@@ -1,0 +1,22 @@
+﻿@model SportsPro.Models.Technician
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h3>Get Incidence by Technician</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="IncTech">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-6">
+                    <select name="ddl" asp-for="TechnicianID" class="form-control" asp-items="ViewBag.TechnicianID">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Select" class="btn btn-warning" />
+                </div>
+        </form>
+    </div>
+</div>

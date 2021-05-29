@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SportsPro.Models.Incident>
+
+@{
+    ViewData["Title"] = "Incident";
+}
+
+<h1>Incident Manager</h1>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <a id="uxAll" class="btn btn-outline-secondary">All incidents</a>
+    </div>
+    <div class="col-md-3">
+        <a id="uxUnassign" class="btn  btn-outline-secondary">Unassigned incidents</a>
+    </div>
+    <div class="col-md-3">
+        <a id="uxOpen" class="btn btn-outline-secondary" >Open incidents</a>
+    </div>
+</div>
+<br />
+<br />
+<div id="uxdisplay">
+    <partial name="openView" model="Model" />
+</div>
+
+<script>
+    $(document).ready(function() {
+        //alert('loaded');
+        $('#uxUnassign').click(function () { 
+            $.ajax({
+                method: 'GET',
+                url: '/Incident/_UnassignedData'
+            }).done(function (result, statusText, xhdr) {
+                $('#uxdisplay').html(result);
+            });
+        });
+
+    });
+    $(document).ready(function () {
+        $('#uxOpen').click(function() {
+            $.ajax({
+                method: 'GET',
+                url: "/Incident/OpenData"
+            }).done(function (result, statusText, xhdr) {
+                $('#uxdisplay').html(result);
+            });
+        });
+
+    });
+    //$(document).ready(function () {
+    //    $('#uxAll').click(function () {
+    //        $.ajax({
+    //            method: 'GET',
+    //            Url: '/Incident/AllData'
+    //        }).done(function (result, statusText, xhdr) {
+    //            $('#uxdisplay').html(result);
+    //        });
+    //    });
+
+    //});
+
+
+</script>
